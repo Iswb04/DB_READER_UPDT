@@ -1,0 +1,33 @@
+RAWG API
+   ↓
+Python
+   ↓
+pega os 6 campos
+   ↓
+seu MySQL
+   ↓
+tabela jogos
+
+pip freeze > requirements.txt
+pip install requests
+pip install mysql-connector-python
+9a51a7ae
+ollama pull llama3
+ollama pull qwen2.5:3b
+ollama run llama3
+ollama run qwen2.5:3b
+pip install sentence-transformers faiss-cpu numpy
+
+
+
+Conhecimento geral do modelo
+        ↓
+Qwen já possui
+        ↓
+"Estados Unidos é um país"
+;;;;
+Conhecimento do seu banco
+        ↓
+SCHEMA + RAG
+        ↓
+"pais é uma coluna da tabela filmes"

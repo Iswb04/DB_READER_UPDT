@@ -1,0 +1,38 @@
+
+RAG (Retrieval-Augmented Generation) é:
+Uma técnica usada em sistemas de IA para melhorar a qualidade e a precisão das respostas.
+* Funciona buscando informações relevantes em uma base de dados/documentos e fornecendo essas informações ao LLM 
+para gerar uma resposta mais precisa.
+_____________________________________________________________________________________________
+
+pip install sentence-transformers faiss-cpu numpy
+
+sentence-transformers → transforma textos em embeddings.
+NumPy → manipula os vetores dos embeddings. (organiza)
+FAISS → encontra os embeddings mais semelhantes.
+
+
+* embeddings: representar o significado de um texto
+através de números. (vetor numérico)
+
+exemplo >>> 
+"Filmes com nota IMDb maior que 8" = [0.21, -0.43, 0.87, 0.12, -0.65, ...]
+"Quais filmes possuem avaliação acima de 8 no IMDb?" = [0.19, -0.40, 0.84, 0.15, -0.61, ...]
+
+
+Pergunta
+   ↓
+Embedding
+   ↓
+FAISS compara com os embeddings
+   ↓
+Encontra os textos mais semelhantes
+   ↓
+Envia para o Ollama
+
+
+
+modelo_embeddings = SentenceTransformer(
+    "sentence-transformers/all-MiniLM-L6-v2"
+)
+>>>> modelo de IA especializado em criar embeddings.
