@@ -5,15 +5,18 @@ Uma técnica usada em sistemas de IA para melhorar a qualidade e a precisão das
 para gerar uma resposta mais precisa.
 _____________________________________________________________________________________________
 
-pip install sentence-transformers faiss-cpu numpy
-
-sentence-transformers → transforma textos em embeddings.
-NumPy → manipula os vetores dos embeddings. (organiza)
-FAISS → encontra os embeddings mais semelhantes.
-
+# Arquitetura usada: RAG vetorial com similaridade semântica
 
 * embeddings: representar o significado de um texto
 através de números. (vetor numérico)
+
+pip install sentence-transformers faiss-cpu numpy
+
+sentence-transformers → transforma textos em embeddings. (biblioteca)
+NumPy → manipula/organiza os vetores dos embeddings. (biblioteca)
+FAISS → encontra os embeddings mais semelhantes. (biblioteca) : biblioteca criada 
+pelo Facebook/Meta para fazer busca rápida por similaridade entre vetores.
+
 
 exemplo >>> 
 "Filmes com nota IMDb maior que 8" = [0.21, -0.43, 0.87, 0.12, -0.65, ...]
@@ -22,17 +25,20 @@ exemplo >>>
 
 Pergunta
    ↓
-Embedding
+Sentence-Transformers transforma em embeddings
    ↓
-FAISS compara com os embeddings
+NumPy organiza os vetores
    ↓
-Encontra os textos mais semelhantes
+FAISS encontra os embeddings mais semelhantes
    ↓
-Envia para o Ollama
-
-
+Python recupera os textos
+   ↓
+Ollama
+   ↓
+  SQL
 
 modelo_embeddings = SentenceTransformer(
     "sentence-transformers/all-MiniLM-L6-v2"
 )
 >>>> modelo de IA especializado em criar embeddings.
+: serve para o RAG encontrar textos semanticamente semelhantes.

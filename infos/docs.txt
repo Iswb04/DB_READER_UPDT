@@ -1,13 +1,3 @@
-RAWG API
-   ↓
-Python
-   ↓
-pega os 6 campos
-   ↓
-seu MySQL
-   ↓
-tabela jogos
-
 pip freeze > requirements.txt
 pip install requests
 pip install mysql-connector-python

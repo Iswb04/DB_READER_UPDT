@@ -1,3 +1,6 @@
+
+# Arquitetura usada: RAG vetorial com similaridade semântica
+
 from sentence_transformers import SentenceTransformer
 import faiss
 import numpy as np
@@ -90,26 +93,29 @@ documentos = [
 ]
 
 
-embeddings = modelo_embeddings.encode(documentos)
+embeddings = modelo_embeddings.encode(documentos) 
+# pega as linhas do documento e transforma em vetor
 
 embeddings = np.array(embeddings).astype("float32")
+# transforma os embeddings em um numpy.ndarray e converte os numeros para float32
 
 indice = faiss.IndexFlatL2(embeddings.shape[1])
+# cria os indices do FAISS
 
 indice.add(embeddings)
-
+# agora o FAISS tem os embeddinns do meu documento
 
 def buscar_contexto(pergunta, quantidade=3):
 
     embedding_pergunta = modelo_embeddings.encode(
         [pergunta]
-    )
+    ) # a pergunta vira um embedding
 
     embedding_pergunta = np.array(
         embedding_pergunta
     ).astype("float32")
 
-    distancias, indices = indice.search(
+    indices = indice.search(
         embedding_pergunta,
         quantidade
     )
