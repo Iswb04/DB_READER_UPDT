@@ -50,11 +50,6 @@ documentos = [
     A coluna nota_imdb contém a nota do filme no IMDb.
     A nota varia de 0 a 10.
     """,
-
-    """
-    A coluna votos_imdb contém a quantidade de votos recebidos no IMDb.
-    """,
-
     """
     A coluna nota_rotten_tomatoes contém a porcentagem do Rotten Tomatoes.
     """,

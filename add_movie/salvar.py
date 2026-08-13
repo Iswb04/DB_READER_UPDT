@@ -27,13 +27,12 @@ def salvar_filme(filme):
             atores,
             sinopse,
             nota_imdb,
-            votos_imdb,
             nota_rotten_tomatoes,
             nota_metacritic
         )
         VALUES (
             %s, %s, %s, %s, %s, %s, %s,
-            %s, %s, %s, %s, %s, %s
+            %s, %s, %s, %s, %s
         )
     """
 
@@ -48,7 +47,6 @@ def salvar_filme(filme):
         filme["atores"],
         filme["sinopse"],
         filme["nota_imdb"],
-        filme["votos_imdb"],
         filme["nota_rotten_tomatoes"],
         filme["nota_metacritic"]
     )

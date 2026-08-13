@@ -7,20 +7,6 @@ API_KEY = getpass.getpass("Chave da API: ")
 URL = "https://www.omdbapi.com/"
 
 
-def converter_votos(votos):
-    if votos == "N/A":
-        return None
-
-    votos = votos.replace(",", "")
-
-    if votos.endswith("M"):
-        return int(float(votos[:-1]) * 1_000_000)
-
-    elif votos.endswith("K"):
-        return int(float(votos[:-1]) * 1_000)
-
-    return int(votos)
-
 
 def buscar_filme(titulo):
 
@@ -65,9 +51,6 @@ def buscar_filme(titulo):
     else:
         nota_imdb = None
 
-    # Converte votos IMDb: "2,2M" / "2.2M" -> 2200000
-    votos_imdb = converter_votos(dados["imdbVotes"])
-
     filme = {
         "id": dados["imdbID"],
         "titulo": dados["Title"],
@@ -79,8 +62,6 @@ def buscar_filme(titulo):
         "atores": dados["Actors"],
         "sinopse": dados["Plot"],
         "nota_imdb": nota_imdb,
-        "votos_imdb": votos_imdb,
-
         # Rotten Tomatoes e Metacritic não são campos diretos
         "nota_rotten_tomatoes": None,
         "nota_metacritic": None
@@ -106,11 +87,3 @@ def buscar_filme(titulo):
                 )
 
     return filme
-
-
-if __name__ == "__main__":
-
-    filme = buscar_filme("Interstellar")
-
-    if filme:
-        print(filme)

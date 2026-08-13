@@ -5,9 +5,9 @@ from rag import buscar_contexto
 
 URL = "http://localhost:11434/api/generate"
 
-MODELO = "qwen2.5:3b"
+MODELO = "qwen2.5:7b"
 
-TEMPERATURE = 0.1
+TEMPERATURE = 0.2
 
 
 SCHEMA = """
@@ -26,7 +26,6 @@ Colunas:
 - atores TEXT
 - sinopse TEXT
 - nota_imdb DECIMAL(3,1)
-- votos_imdb INT
 - nota_rotten_tomatoes INT
 - nota_metacritic INT
 """
@@ -58,17 +57,15 @@ NAO_RELACIONADA
 2. Se a pergunta tiver relação com o banco, gere somente
 uma consulta SELECT válida em MySQL.
 
-3. Use somente a tabela filmes.
+3. Use somente as colunas informadas no schema.
 
-4. Use somente as colunas informadas no schema.
+4. Não invente colunas.
 
-5. Não invente colunas.
+5. Não use INSERT, UPDATE, DELETE, DROP ou ALTER.
 
-6. Não use INSERT, UPDATE, DELETE, DROP ou ALTER.
+6. Não coloque explicações.
 
-7. Não coloque explicações.
-
-8. Retorne somente o SQL ou NAO_RELACIONADA.
+7. Retorne somente o SQL ou NAO_RELACIONADA.
 
 PERGUNTA:
 {pergunta}
@@ -87,14 +84,14 @@ PERGUNTA:
         }
     )
 
-    resposta.raise_for_status()
+    resposta.raise_for_status() # Verifica se a requisição HTTP deu certo.
 
-    sql = resposta.json()["response"].strip()
+    sql = resposta.json()["response"].strip() # pegar resposta do ollama JSON e organizar
 
-    sql = sql.replace("```sql", "")
-    sql = sql.replace("```", "")
+    sql = sql.replace("```sql", "") # remover o "sql" se vier junto
+    sql = sql.replace("```", "") # remover o "```" se vier junto no fechamento
 
-    return sql.strip()
+    return sql.strip() # devolver o slq limpo
 
 
 if __name__ == "__main__":

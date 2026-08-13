@@ -13,12 +13,12 @@ pip install requests
 pip install mysql-connector-python
 9a51a7ae
 ollama pull llama3
-ollama pull qwen2.5:3b
+ollama pull qwen2.5:7b
 ollama run llama3
-ollama run qwen2.5:3b
+ollama run qwen2.5:7b
 pip install sentence-transformers faiss-cpu numpy
-
-
+ollama ps >> verificar qual ollama está ativo!!
+ollama list >> versões do ollama instaladas na máquina!!!
 
 Conhecimento geral do modelo
         ↓
