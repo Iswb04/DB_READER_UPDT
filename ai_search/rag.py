@@ -105,7 +105,7 @@ indice = faiss.IndexFlatL2(embeddings.shape[1])
 indice.add(embeddings)
 # agora o FAISS tem os embeddinns do meu documento
 
-def buscar_contexto(pergunta, quantidade=3):
+def buscar_contexto(pergunta, quantidade=3): # usar 3 documentos é o suficiente
 
     embedding_pergunta = modelo_embeddings.encode(
         [pergunta]
@@ -114,15 +114,20 @@ def buscar_contexto(pergunta, quantidade=3):
     embedding_pergunta = np.array(
         embedding_pergunta
     ).astype("float32")
+    # transforma os dados em um array numPy e depois converte em Float32
 
-    indices = indice.search(
+    __, indices = indice.search( 
         embedding_pergunta,
         quantidade
     )
+    # FAISS faz a busca dos 3 embeddings mais semelhantes
 
-    contexto = []
+    contexto = [] # lista vazia para guardar os documentos que o FAISS achou
+
+
 
     for i in indices[0]:
         contexto.append(documentos[i])
 
     return "\n\n".join(contexto)
+    #passar por cada índice que o FAISS encontrou e pegar o documento correspondente.
