@@ -39,7 +39,9 @@ def gerar_sql(pergunta):
 Você é um especialista em MySQL e NL2SQL.
 
 Sua tarefa é converter a pergunta do usuário em uma consulta
-SQL para o banco de dados informado.
+SQL para o banco de dados informado. 
+Lembrando que os dados da tabela estão em inglês.
+Exemplo: Filmes do Brasil = Filmes do Brazil
 
 SCHEMA:
 {SCHEMA}
